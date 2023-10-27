@@ -1,61 +1,58 @@
 package org.example;
 
-public class Main{
-    private static void Sift_Up(int len, int[]new_array){ //отсеивание вниз
+public class Main {
+    private static void SiftUp(int len, int[] newArray) { //отсеивание вниз
         int x;
-        if ((len-1)/2 >= 0 && new_array[len] < new_array[(len-1) / 2]){
-            x = new_array[len];
-            new_array[len] = new_array[(len-1)/2];
-            new_array[(len-1)/2] = x;
-            Sift_Up((len-1)/2, new_array);
+        if ((len - 1) / 2 >= 0 && newArray[len] < newArray[(len - 1) / 2]) {
+            x = newArray[len];
+            newArray[len] = newArray[(len - 1) / 2];
+            newArray[(len - 1) / 2] = x;
+            SiftUp((len - 1) / 2, newArray);
         }
     }
 
-    private static void Sift_Down(int current, int len, int[]new_array){ //отсеивание вверх
+    private static void SiftDown(int current, int len, int[] newArray) { //отсеивание вверх
         int x;
-        if (current*2+2 < len && new_array[current*2+1] < new_array[current] && new_array[current*2+2] < new_array[current]){
-            if (new_array[current*2+1] < new_array[current*2+2]){
-                x = new_array[current*2+1];
-                new_array[current*2+1] = new_array[current];
-                new_array[current] = x;
-                Sift_Down(current*2+1, len, new_array);
+        if (current * 2 + 2 < len && newArray[current * 2 + 1] < newArray[current] && newArray[current * 2 + 2] < newArray[current]) {
+            if (newArray[current * 2 + 1] < newArray[current * 2 + 2]) {
+                x = newArray[current * 2 + 1];
+                newArray[current * 2 + 1] = newArray[current];
+                newArray[current] = x;
+                SiftDown(current * 2 + 1, len, newArray);
+            } else {
+                x = newArray[current * 2 + 2];
+                newArray[current * 2 + 2] = newArray[current];
+                newArray[current] = x;
+                SiftDown(current * 2 + 2, len, newArray);
             }
-            else{
-                x = new_array[current*2+2];
-                new_array[current*2+2] = new_array[current];
-                new_array[current] = x;
-                Sift_Down(current*2+2, len, new_array);
-            }
-        }
-        else if (current*2+1 < len && new_array[current*2+1] < new_array[current]){
-            x = new_array[current*2+1];
-            new_array[current*2+1] = new_array[current];
-            new_array[current] = x;
-            Sift_Down(current*2+1, len, new_array);
-        }
-        else if (current*2+2 < len && new_array[current*2+2] < new_array[current]){
-            x = new_array[current*2+2];
-            new_array[current*2+2] = new_array[current];
-            new_array[current] = x;
-            Sift_Down(current*2+2, len, new_array);
+        } else if (current * 2 + 1 < len && newArray[current * 2 + 1] < newArray[current]) {
+            x = newArray[current * 2 + 1];
+            newArray[current * 2 + 1] = newArray[current];
+            newArray[current] = x;
+            SiftDown(current * 2 + 1, len, newArray);
+        } else if (current * 2 + 2 < len && newArray[current * 2 + 2] < newArray[current]) {
+            x = newArray[current * 2 + 2];
+            newArray[current * 2 + 2] = newArray[current];
+            newArray[current] = x;
+            SiftDown(current * 2 + 2, len, newArray);
         }
     }
 
     public static void heapsort(int[] list) {
-        int  size = list.length;
-        int[] new_tree = new int[size];
-        for (int i = 0; i < size; i++){ // записывание в новый
-            new_tree[i] = list[i];
-            Sift_Up(i, new_tree);
+        int size = list.length;
+        int[] newTree = new int[size];
+        for (int i = 0; i < size; i++) { // записывание в новый
+            newTree[i] = list[i];
+            SiftUp(i, newTree);
         }
         int x;
-        for (int i = size-1; i >= 0; i--){ // отсев наименьшего
-            x = new_tree[0];
-            new_tree[0] = new_tree[i];
-            new_tree[i] = x;
-            Sift_Down(0, i, new_tree);
+        for (int i = size - 1; i >= 0; i--) { // отсев наименьшего
+            x = newTree[0];
+            newTree[0] = newTree[i];
+            newTree[i] = x;
+            SiftDown(0, i, newTree);
         }
-        for(int i = 0; i < size; i++) // записываем полученный в который дали на входе
-            list[i] = new_tree[size-1-i];
+        for (int i = 0; i < size; i++) // записываем полученный в который дали на входе
+            list[i] = newTree[size - 1 - i];
     }
 }
