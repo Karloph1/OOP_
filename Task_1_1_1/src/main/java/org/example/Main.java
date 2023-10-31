@@ -55,4 +55,9 @@ public class Main {
         for (int i = 0; i < size; i++) // записываем полученный в который дали на входе
             list[i] = newTree[size - 1 - i];
     }
+
+    public static void main(String[] args){
+
+    }
+
 }
