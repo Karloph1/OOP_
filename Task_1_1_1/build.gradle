@@ -28,7 +28,7 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
-                    "Main.class", //"<package>.Main.class" Указывайте полное имея пакета с точками
+                    "org.example.Main.class", //"<package>.Main.class" Указывайте полное имея пакета с точками
             ])
         }))
     }
