@@ -1,2 +1,3 @@
-rootProject.name = 'Task_1_1_1'
+rootProject.name = 'Task_1_1_2'
 include 'Task_1_1_1'
+include 'Task_1_1_2'
